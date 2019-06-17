@@ -46,3 +46,19 @@ const qTwo = function(){
 
 qTwo();
 
+function deleteDuplicate(str){
+    const hash = new HashMap();
+    hash.MAX_LOAD_RATIO=0.5;
+    hash.SIZE_RATIO=3;
+    let list = str.split('')
+    hash._capacity=list.length;
+    for (let i=str.length-1; i>=0; i--){
+        hash.set(list[i],i)
+    }
+    let out='';
+    hash._hashTable.sort((a,b)=>a.value-b.value);
+    hash._hashTable.forEach(l => out+=l.key);
+    console.log(out);
+
+}
+deleteDuplicate("google all that you think can think of");
