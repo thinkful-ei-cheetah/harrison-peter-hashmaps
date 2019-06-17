@@ -1,11 +1,28 @@
 /* eslint-disable indent */
 /* eslint-disable strict */
 
-class _Node(key, value){
-    constructor() {
-        this.key = key;
+class _Node {
+    constructor(key, value) {
+        this.key = key
         this.value = value;
         this.next = null
+    }
+}
+
+class _hashList {
+    constructor(){
+        this.head = null;
+    }
+    insertFirst(item) {
+        this.head = new _Node(item);
+    }
+    insertLast(item) {
+        let tempNode = this.head;
+        console.log(tempNode)
+        while (tempNode.next !== null) {
+            tempNode = tempNode.next;
+        }
+        tempNode.next = new _Node(item);
     }
 }
 
@@ -22,10 +39,11 @@ class HashMap {
         if (this._hashTable[index] === undefined) {
             throw new Error('Key error');
         }
-        return this._hashTable[index].value;
+        return this._hashTable[index].values;
     }
 
     set(key, value) {
+        let node = new _Node(key, value);
         const loadRatio = (this.length + this._deleted + 1) / this._capacity;
         if (loadRatio > HashMap.MAX_LOAD_RATIO) {
             this._resize(this._capacity * HashMap.SIZE_RATIO);
@@ -34,13 +52,21 @@ class HashMap {
         const index = this._findSlot(key);
 
         if (!this._hashTable[index]) {
-            this.length++;
+            let hList = new _hashList();
+            hList.head = node
+            this._hashTable[index] = {
+                key, 
+                values: hList,
+            };
         }
-        this._hashTable[index] = {
-            key,
-            value,
-            DELETED: false
-        };
+        else{
+        let list = this._hashTable[index]
+        list.values.head.value = [list.values.head.value, value];
+        console.log(list)
+            if(list.key !== key) {
+                list.values.head.next = node;
+            }
+        }
     }
 
     delete(key) {
@@ -133,66 +159,13 @@ const qTwo = function () {
     map1.set(str1, 10);
     map1.set(str2, 20);
     let map2 = new HashMap();
-    let str3 = str1;
-    let str4 = str2;
-    map2.set(str3, 20);
-    map2.set(str4, 10);
-
-    console.log(map1.get(str1));
-    console.log(map2.get(str3));
+    // let str3 = str1;
+    // let str4 = str2;
+    // map2.set(str3, 20);
+    // map2.set(str4, 10);
+    console.log(map1._hashTable)
+    console.log(map1.get(str1).head);
+    // console.log(map2.get(str3));
 }
 
 qTwo();
-
-let test = [5, 28, 19, 15, 20, 33, 12, 17, 10]
-
-let testH = []
-
-test.map(num => {
-    testH.push(num % 9)
-})
-
-console.log(testH)
-
-// representation of q3.1  |22|88|' '|' '|4|15|28|17|59|31|10|
-
-// representation of q3.2 |' '|[28,19,10]|20|12|' '|5|[15,33]|' '|17|
-
-
-// function deleteDuplicate(str){
-//     const hash = new HashMap();
-//     hash.MAX_LOAD_RATIO=0.5;
-//     hash.SIZE_RATIO=3;
-//     let list = str.split('')
-//     hash._capacity=list.length;
-//     for (let i=str.length-1; i>=0; i--){
-//         hash.set(list[i],i)
-//     }
-//     let out='';
-//     hash._hashTable.sort((a,b)=>a.value-b.value);
-//     hash._hashTable.forEach(l => out+=l.key);
-//     console.log(out);
-
-// }
-// deleteDuplicate("google all that you think can think of");
-
-// function anagramGroup(words){
-//     const anagrams = new HashMap;
-//     words.forEach((word)=>{
-//         const sortedWord = word.split('').sort().join('');
-//         try{
-//             anagrams.set(sortedWord, [...anagrams.get(sortedWord), word])
-//         }
-//         catch{
-//             anagrams.set(sortedWord,[word])
-//         }
-//     });
-//     let output=[]
-//     anagrams._hashTable.forEach(key =>{
-//         output.push(key.value)
-//     })
-//     return output
-// }
-
-// console.log(anagramGroup(['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race']))
-
