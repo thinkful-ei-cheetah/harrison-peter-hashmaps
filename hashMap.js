@@ -166,3 +166,19 @@ console.log(testH)
 
 // }
 // deleteDuplicate("google all that you think can think of");
+
+function isPalin(str) {
+    str += str;
+    console.log(str)
+    const hash = new HashMap();
+    let list = str.split('');
+    hash._capacity=list.length;
+    console.log(hash._findSlot('nothing'))
+    // list.map(char => {
+        
+    // })
+
+}
+
+isPalin("test");
+

@@ -62,3 +62,58 @@ function deleteDuplicate(str){
 
 }
 deleteDuplicate("google all that you think can think of");
+
+// function isPalin(str) {
+//     str += str;
+//     console.log(str)
+//     const hash = new HashMap();
+//     let list = str.split('');
+//     hash._capacity=list.length;
+//     console.log(hash._findSlot('test'))
+//     list.map(char => {
+//         try {
+//             if(hash.get(char) === true){
+//                 hash.set(char, )
+//             }
+//         }
+//         catch {
+
+//         }
+//     })
+
+// }
+
+// isPalin("test");
+
+function isPalindrome(str){
+    const hash2 = new HashMap();
+    let list = str.split('');
+    list.forEach(l => {
+        try {hash2.set(l,!hash2.get(l))}
+        catch{hash2.set(l,false)}
+    })
+
+    if(hash2.length%2==0){
+        let falseCount=0
+        hash2._hashTable.forEach(e => {
+            if (!e.value){
+                falseCount++
+            }
+        })
+        if (falseCount>1){
+            return false
+        }
+        return true
+    }
+    else{
+        hash2._hashTable.forEach(l => {
+            if(!l.value){
+                return false
+            }
+        })
+    return true
+    }
+}
+console.log(isPalindrome('aaasss'))
+console.log(isPalindrome('acecarr'))
+console.log(isPalindrome('abcabc'))
