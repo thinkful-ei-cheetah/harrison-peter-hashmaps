@@ -167,3 +167,22 @@ console.log(testH)
 // }
 // deleteDuplicate("google all that you think can think of");
 
+// function anagramGroup(words){
+//     const anagrams = new HashMap;
+//     words.forEach((word)=>{
+//         const sortedWord = word.split('').sort().join('');
+//         try{
+//             anagrams.set(sortedWord, [...anagrams.get(sortedWord), word])
+//         }
+//         catch{
+//             anagrams.set(sortedWord,[word])
+//         }
+//     });
+//     let output=[]
+//     anagrams._hashTable.forEach(key =>{
+//         output.push(key.value)
+//     })
+//     return output
+// }
+
+// console.log(anagramGroup(['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race']))
