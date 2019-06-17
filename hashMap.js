@@ -133,3 +133,16 @@ const qTwo = function(){
 
 qTwo();
 
+let test = [5, 28, 19, 15, 20, 33, 12, 17, 10]
+
+let testH = []
+
+test.map(num => {  
+    testH.push(num%9)
+})
+
+console.log(testH)
+
+// representation of q3.1  |22|88|' '|' '|4|15|28|17|59|31|10|
+
+// representation of q3.2 |' '|[28,19,10]|20|12|' '|5|[15,33]|' '|17|
